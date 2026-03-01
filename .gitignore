@@ -1,0 +1,14 @@
+# Build output
+public/
+resources/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Hugo
+.hugo_build.lock

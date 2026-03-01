@@ -1,0 +1,21 @@
+{{ define "main" }}
+<article>
+    <h1>{{ .Title }}</h1>
+    <p class="meta">{{ .Date.Format "2006-01-02" }} | {{ .Params.author | default "chebf" }}
+    {{ if .Params.categories }} | 分类: {{ range first 1 .Params.categories }}{{ . }}{{ end }}{{ end }}
+    </p>
+    
+    <div class="content">
+        {{ .Content }}
+    </div>
+
+    {{ if .Params.tags }}
+    <div class="tags">
+        <strong>标签:</strong>
+        {{ range .Params.tags }}
+        <span><a href="/tags/{{ . | urlize }}/">{{ . }}</a></span>
+        {{ end }}
+    </div>
+    {{ end }}
+</article>
+{{ end }}

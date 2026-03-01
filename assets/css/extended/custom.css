@@ -1,0 +1,11 @@
+/* 自定义样式 - 可在此添加主题定制 */
+:root {
+  --primary-color: #0066cc;
+}
+
+/* 自定义深色模式 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #58a6ff;
+  }
+}

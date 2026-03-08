@@ -1,21 +1,33 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
-<ul class="post-list">
-    {{ range .Pages }}
-    <li>
-        <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-        <p class="meta">{{ .Date.Format "2006-01-02" }} | {{ .Params.author | default "chebf" }}</p>
-        {{ if .Description }}
-        <p>{{ .Description }}</p>
+<section class="feed-head feed-head-list">
+    <div>
+        <h1>{{ .Title }}</h1>
+        {{ if eq .Kind "taxonomy" }}
+        <p class="page-desc">共 {{ len .Data.Terms }} 个条目</p>
+        {{ else }}
+        <p class="page-desc">共 {{ len .Pages }} 篇内容</p>
         {{ end }}
-        {{ if .Params.tags }}
-        <div class="tags">
-            {{ range .Params.tags }}
-            <span>{{ . }}</span>
-            {{ end }}
-        </div>
-        {{ end }}
-    </li>
+    </div>
+</section>
+
+{{ if eq .Kind "taxonomy" }}
+<div class="taxonomy-grid">
+    {{ range .Data.Terms.Alphabetical }}
+    <a class="taxonomy-card" href="{{ .Page.RelPermalink }}">
+        <strong>{{ .Page.Title }}</strong>
+        <span>{{ .Count }} 篇</span>
+    </a>
+    {{ else }}
+    <p class="empty-hint">暂无条目。</p>
     {{ end }}
-</ul>
+</div>
+{{ else }}
+<div class="post-feed">
+    {{ range .Pages.ByDate.Reverse }}
+        {{ partial "post-card.html" (dict "page" .) }}
+    {{ else }}
+    <p class="empty-hint">暂无内容。</p>
+    {{ end }}
+</div>
+{{ end }}
 {{ end }}

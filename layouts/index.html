@@ -1,19 +1,26 @@
 {{ define "main" }}
-<section>
-    <h1>{{ .Site.Title }}</h1>
-    <p>{{ .Site.Params.description }}</p>
-    
-    <h2>最新文章</h2>
-    <ul class="post-list">
-        {{ range first 5 (where .Site.RegularPages "Section" "posts") }}
-        <li>
-            <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-            <p class="meta">{{ .Date.Format "2006-01-02" }}</p>
-            {{ if .Description }}
-            <p>{{ .Description }}</p>
-            {{ end }}
-        </li>
-        {{ end }}
-    </ul>
+{{ $posts := (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}
+<section class="hero">
+    <p class="hero-kicker">精选长文与实用指南</p>
+    <h1>{{ .Site.Params.homeInfoParams.Title | default .Site.Title }}</h1>
+    <p>{{ .Site.Params.homeInfoParams.Content | default .Site.Params.description }}</p>
+    <div class="site-stats">
+        <span>{{ len $posts }} 篇文章</span>
+        <span>{{ len .Site.Taxonomies.categories }} 个分类</span>
+        <span>{{ len .Site.Taxonomies.tags }} 个标签</span>
+    </div>
 </section>
+
+<section class="feed-head">
+    <h2>最新文章</h2>
+    <a href="{{ "/posts/" | relLangURL }}">查看归档</a>
+</section>
+
+<div class="post-feed">
+    {{ range first 8 $posts }}
+        {{ partial "post-card.html" (dict "page" .) }}
+    {{ else }}
+    <p class="empty-hint">还没有发布文章，先创建一篇吧。</p>
+    {{ end }}
+</div>
 {{ end }}

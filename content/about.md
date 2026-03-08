@@ -3,10 +3,6 @@ title: "关于"
 date: 2024-01-01T00:00:00+08:00
 draft: false
 comments: false
-menu:
-  main:
-    identifier: about
-    weight: 50
 ---
 
 # 关于 ICECREAM
@@ -28,8 +24,8 @@ menu:
 
 ## 这个博客
 
-使用 Hugo + PaperMod 主题构建，托管在 GitHub Pages。
+使用 Hugo + 自定义布局构建，托管在 GitHub Pages。
 
-欢迎访问我的 [作品集](/)。
+欢迎访问我的 [作品集](../)。
 
 *感谢您的访问！*

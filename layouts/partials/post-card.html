@@ -1,0 +1,45 @@
+{{- $p := .page -}}
+{{- $summary := $p.Params.summary | default $p.Description | default ($p.Summary | plainify) -}}
+<article class="post-card">
+  {{- with $p.Params.images }}
+    {{- if gt (len .) 0 }}
+    <a class="post-cover-link" href="{{ $p.RelPermalink }}">
+      <img class="post-cover" src="{{ (index . 0) | relURL }}" alt="{{ $p.Title }}">
+    </a>
+    {{- end }}
+  {{- end }}
+
+  <h2 class="post-title">
+    <a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>
+  </h2>
+
+  <div class="post-meta-line">
+    <span>发表于 {{ $p.Date.Format "2006-01-02" }}</span>
+    {{- if ne ($p.Lastmod.Format "2006-01-02") ($p.Date.Format "2006-01-02") }}
+    <span>更新于 {{ $p.Lastmod.Format "2006-01-02" }}</span>
+    {{- end }}
+    {{- with $p.Params.categories }}
+      {{- if gt (len .) 0 }}
+      <span>分类 <a href="{{ (printf "/categories/%s/" ((index . 0) | urlize)) | relLangURL }}">{{ index . 0 }}</a></span>
+      {{- end }}
+    {{- end }}
+    <span>{{ $p.WordCount }} 字</span>
+    <span>{{ $p.ReadingTime }} 分钟</span>
+  </div>
+
+  {{- if $summary }}
+  <p class="post-excerpt">{{ $summary | plainify | truncate 180 }}</p>
+  {{- end }}
+
+  {{- with $p.Params.tags }}
+    {{- if gt (len .) 0 }}
+    <div class="tag-list">
+      {{- range first 4 . }}
+      <a class="tag-pill" href="{{ (printf "/tags/%s/" (. | urlize)) | relLangURL }}">{{ . }}</a>
+      {{- end }}
+    </div>
+    {{- end }}
+  {{- end }}
+
+  <a class="read-more" href="{{ $p.RelPermalink }}">阅读全文 &raquo;</a>
+</article>

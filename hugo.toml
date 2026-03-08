@@ -1,11 +1,13 @@
 baseURL = 'https://chebf.github.io/icecream-blog/'
 languageCode = 'zh-CN'
 title = 'ICECREAM'
+enableRobotsTXT = true
 # 使用自定义主题（无外部主题依赖）
 
 [params]
   author = 'chebf'
   description = 'ICECREAM - 技术、生活与思考'
+  siteSubtitle = '保持蓬勃的好奇心'
   defaultTheme = 'auto'
   disableThemeToggle = false
   ShowReadingTime = true
@@ -49,7 +51,7 @@ title = 'ICECREAM'
   
   [[menu.main]]
     identifier = 'posts'
-    name = '文章'
+    name = '归档'
     url = '/posts/'
     weight = 20
   
@@ -75,6 +77,11 @@ title = 'ICECREAM'
   tag = "tags"
   category = "categories"
 
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
 [imaging]
   quality = 75
   resampleFilter = "lanczos"
@@ -90,3 +97,4 @@ title = 'ICECREAM'
     guessSyntax = true
     lineNumbersInTable = true
     noClasses = false
+

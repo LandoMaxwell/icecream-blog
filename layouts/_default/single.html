@@ -1,21 +1,51 @@
 {{ define "main" }}
-<article>
-    <h1>{{ .Title }}</h1>
-    <p class="meta">{{ .Date.Format "2006-01-02" }} | {{ .Params.author | default "chebf" }}
-    {{ if .Params.categories }} | 分类: {{ range first 1 .Params.categories }}{{ . }}{{ end }}{{ end }}
-    </p>
-    
-    <div class="content">
+<article class="post-single">
+    <h1 class="post-single-title">{{ .Title }}</h1>
+
+    <div class="post-meta-line">
+        <span>发表于 {{ .Date.Format "2006-01-02" }}</span>
+        {{ if ne (.Lastmod.Format "2006-01-02") (.Date.Format "2006-01-02") }}
+        <span>更新于 {{ .Lastmod.Format "2006-01-02" }}</span>
+        {{ end }}
+        {{ with .Params.categories }}
+            {{ if gt (len .) 0 }}
+            <span>分类 <a href="{{ (printf "/categories/%s/" ((index . 0) | urlize)) | relLangURL }}">{{ index . 0 }}</a></span>
+            {{ end }}
+        {{ end }}
+        <span>{{ .WordCount }} 字</span>
+        <span>{{ .ReadingTime }} 分钟</span>
+    </div>
+
+    {{ if .TableOfContents }}
+    <details class="toc-block">
+        <summary>文章目录</summary>
+        {{ .TableOfContents }}
+    </details>
+    {{ end }}
+
+    <div class="post-content">
         {{ .Content }}
     </div>
 
     {{ if .Params.tags }}
-    <div class="tags">
-        <strong>标签:</strong>
+    <div class="tag-list">
         {{ range .Params.tags }}
-        <span><a href="/tags/{{ . | urlize }}/">{{ . }}</a></span>
+        <a class="tag-pill" href="{{ (printf "/tags/%s/" (. | urlize)) | relLangURL }}">{{ . }}</a>
         {{ end }}
     </div>
     {{ end }}
+
+    <nav class="post-nav" aria-label="文章翻页">
+        <div>
+            {{ with .PrevInSection }}
+            <a href="{{ .RelPermalink }}">&larr; {{ .Title }}</a>
+            {{ end }}
+        </div>
+        <div class="post-nav-next">
+            {{ with .NextInSection }}
+            <a href="{{ .RelPermalink }}">{{ .Title }} &rarr;</a>
+            {{ end }}
+        </div>
+    </nav>
 </article>
 {{ end }}

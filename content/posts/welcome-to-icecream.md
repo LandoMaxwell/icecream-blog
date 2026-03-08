@@ -1,10 +1,14 @@
 ---
 title: "欢迎来到 ICECREAM"
 date: 2024-01-01T10:00:00+08:00
+lastmod: 2024-01-01T10:00:00+08:00
 draft: false
 description: "ICECREAM 博客开站公告"
+summary: "这是一篇开站说明，介绍博客定位、内容方向与后续更新计划。"
+keywords: ["Hugo", "博客", "开站"]
 tags: ["公告", "开始"]
 categories: ["随笔"]
+images: []
 author: "chebf"
 ShowReadingTime: true
 ShowWordCount: true

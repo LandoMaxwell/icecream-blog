@@ -1,8 +1,9 @@
 ﻿---
 title: "Visual Studio Code 权威指南：从入门到精通"
 date: 2026-03-08T23:59:06+08:00
-lastmod: 2026-03-08T23:59:06+08:00
+lastmod: 2026-03-09T00:18:00+08:00
 draft: false
+slug: "vscode-usage-guide"
 description: "一篇系统化的 VS Code 实战指南，覆盖界面、配置、调试、扩展与远程开发。"
 summary: "从基础操作到高级工作流，系统梳理 VS Code 在开发中的最佳实践。"
 keywords: ["VS Code", "Visual Studio Code", "开发工具", "编辑器", "调试"]
@@ -10,6 +11,16 @@ tags: ["工具", "VS Code", "开发效率"]
 categories: ["使用指南"]
 author: "chebf"
 ---
+
+## 导读
+
+这是一篇面向长期使用者的 VS Code 全景指南，内容从界面导航、配置管理、调试工作流一路覆盖到扩展生态与远程开发。你可以按章节顺序阅读，也可以通过上方目录直接跳转到当前最需要的部分。
+
+**适合人群**
+
+- 刚开始系统使用 VS Code 的开发者
+- 希望整理并升级个人开发环境的进阶用户
+- 需要在团队内统一配置与工作流的技术负责人
 
 ## 一、 核心基础与界面导航 (Core Fundamentals & UI Navigation)
 
